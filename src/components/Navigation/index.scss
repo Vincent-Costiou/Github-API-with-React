@@ -1,8 +1,11 @@
-#nav{
-  
-  a{
-    text-transform: uppercase;
-    padding: 1.2em;
-    font-size: 1.2em;
+#header{
+  border-radius: 0px;
+  #nav{
+    justify-content: flex-end;
+    a{
+      text-transform: uppercase;
+      padding: 1.2em;
+      font-size: 1.2em;
+    }
   }
 }
