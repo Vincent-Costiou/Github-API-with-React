@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 
-import './index.scss';
 
 const Navigation = () => (
   <Menu>

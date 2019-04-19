@@ -9,6 +9,8 @@ import React from 'react';
 // Composants
 import Navigation from '../Navigation';
 import Login from '../Login';
+import About from '../About';
+
 
 // Styles et assets
 import './app.scss';
@@ -19,7 +21,8 @@ import './app.scss';
 const App = () => (
   <div id="app">
     <Navigation />
-    <Login />
+    {/* <Login /> */}
+    <About />
   </div>
 );
 
