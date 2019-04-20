@@ -1,23 +1,27 @@
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
   token: '',
   loadingMessage: 'Saisissez votre token Github',
   welcomeMessage: '',
   loading: false,
   user: {},
   repos: [],
+  currentResearch: '',
+  lastResearch: '',
+  searching: false,
   searchedRepos: [],
 };
 
 // Types
 const ON_LOGOUT = 'ON_LOGOUT';
 export const LOG_USER = 'LOG_USER';
-export const LOGIN_INPUT_CHANGE = 'LOGIN_INPUT_CHANGE';
+const LOGIN_INPUT_CHANGE = 'LOGIN_INPUT_CHANGE';
 const CHANGE_LOADING_MESSAGE = 'CHANGE_LOADING_MESSAGE';
 const USER_LOGGED = 'USER_LOGGED';
+const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
 const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
-
+const SEARCH_RETURNED_RESULTS = 'SEARCH_RETURNED_RESULTS';
 
 // Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -50,6 +54,27 @@ const reducer = (state = initialState, action = {}) => {
         welcomeMessage: action.welcomeMessage,
         user: { ...action.user },
         repos: { ...action.repos },
+      };
+
+    case SEARCH_INPUT_CHANGE:
+      return {
+        ...state,
+        currentResearch: action.research,
+      };
+
+    case SEARCH_FOR_REPOS:
+      return {
+        ...state,
+        searching: true,
+      };
+
+    case SEARCH_RETURNED_RESULTS:
+      return {
+        ...state,
+        searchedRepos: action.searchedRepos,
+        lastResearch: state.research,
+        currentResearch: '',
+        searching: false,
       };
 
     case ON_LOGOUT:
@@ -90,8 +115,17 @@ export const userLogged = (message, user, repos) => ({
   repos,
 });
 
-export const searchForRepos = searchedRepos => ({
+export const searchInputChange = research => ({
+  type: SEARCH_INPUT_CHANGE,
+  research,
+});
+
+export const searchForRepos = () => ({
   type: SEARCH_FOR_REPOS,
+});
+
+export const searchReturnedResults = searchedRepos => ({
+  type: SEARCH_RETURNED_RESULTS,
   searchedRepos,
 });
 

@@ -17,11 +17,11 @@ const Login = ({ inputText, loadingMessage, loading, onInputChange, onFormSubmit
   };
 
   return (
-    <main>
+    <main id="login">
       <h1 id="loginMessage">Login with <Icon name="github" /></h1>
       <Form onSubmit={handleSubmit}>
         <Form.Field>
-          <label>{loadingMessage}</label>
+          <label id="loginLabel">{loadingMessage}</label>
           <Input
             type="password"
             value={inputText}

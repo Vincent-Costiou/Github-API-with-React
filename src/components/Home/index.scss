@@ -1,4 +1,4 @@
-main {
+#welcome {
   width: 50%;
   margin: 100px auto;
 
@@ -9,10 +9,19 @@ main {
     font-style: italic;
     font-weight: lighter;
   }
+}
+
+#login {
+  width: 500px;
+  margin: 100px auto;
 
   #loginMessage {
     font-size: 2em;
-    
   }
+
+  #loginLabel{
+    padding: 1em 0;
+  }
+
 }
 

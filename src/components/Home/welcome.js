@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import './index.scss';
 
 const Welcome = ({ welcomeMessage }) => (
-  <main id>
+  <main id="welcome">
     <h1 id="welcomeMessage">{welcomeMessage}</h1>
+    {/* <h1 id="welcomeMessage">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptates tempora inventore, commodi qui unde laborum accusamus nam aut illum?</h1> */}
+
   </main>
 );
 

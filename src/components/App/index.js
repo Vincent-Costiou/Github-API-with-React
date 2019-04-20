@@ -11,8 +11,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 // Composants
 import Navigation from 'src/containers/Navigation';
 import Home from 'src/containers/Home';
+import Search from 'src/containers/Search';
 import About from '../About';
-import Search from '../Search';
 import NotFound from '../NotFound';
 
 
@@ -35,11 +35,11 @@ const App = ({ loggedIn }) => (
         />
         <Route
           path="/search"
-          render={() => (loggedIn ? (<Search />) : (<Redirect to="/login" />))}
+          render={() => (loggedIn ? (<Search />) : (<Redirect to="/" />))}
         />
         <Route
           path="/about"
-          render={() => (loggedIn ? (<About />) : (<Redirect to="/login" />))}
+          render={() => (loggedIn ? (<About />) : (<Redirect to="/" />))}
         />
         <Route
           path="/logout"
