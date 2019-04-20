@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
  */
 // Composants
 import Navigation from 'src/containers/Navigation';
-import Login from '../Login';
+import Login from 'src/containers/Login';
 import About from '../About';
 import Welcome from '../Welcome';
 import Search from '../Search';
