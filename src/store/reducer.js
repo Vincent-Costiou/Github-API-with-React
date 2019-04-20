@@ -1,27 +1,18 @@
-/**
- * Initial State
- */
+
 const initialState = {
-  message: 'Hello',
+  loggedIn: true,
 };
 
-/**
- * Types
- */
-const DO_SOMETHING = 'DO_SOMETHING';
+// Types
+const ON_LOGOUT = 'ON_LOGOUT';
 
-/**
- * Traitements
- */
-
-/**
- * Reducer
- */
+// Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case ON_LOGOUT:
       return {
         ...state,
+        loggedIn: false,
       };
 
     default:
@@ -29,18 +20,10 @@ const reducer = (state = initialState, action = {}) => {
   }
 };
 
-/**
- * Action Creators
- */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
+
+// Actions Creators
+export const onLogout = () => ({
+  type: ON_LOGOUT,
 });
 
-/**
- * Selectors
- */
-
-/**
- * Export
- */
 export default reducer;

@@ -2,13 +2,14 @@
  * Import
  */
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 /**
  * Local import
  */
 // Composants
-import Navigation from '../Navigation';
+import Navigation from 'src/containers/Navigation';
 import Login from '../Login';
 import About from '../About';
 import Welcome from '../Welcome';
@@ -22,21 +23,47 @@ import './app.scss';
 /**
  * Code
  */
-const App = () => (
+
+const App = ({ loggedIn }) => (
   <div id="app">
     <Router>
-      <Navigation />
+      {loggedIn && <Navigation />}
       <Switch>
-        <Route path="/welcome" component={Welcome} />
-        <Route path="/search" component={Search} />
-        <Route path="/about" component={About} />
-        <Route exact path="/" component={Login} />
-        <Route path="/logout" component={Login} />
+        <Route
+          exact
+          path="/"
+          render={() => (loggedIn ? (<Redirect to="/welcome" />) : (<Redirect to="/login" />))}
+        />
+        <Route
+          path="/login"
+          render={() => (loggedIn ? (<Redirect to="/welcome" />) : (<Login />))}
+        />
+        <Route
+          path="/welcome"
+          render={() => (loggedIn ? (<Welcome />) : (<Redirect to="/login" />))}
+        />
+        <Route
+          path="/search"
+          render={() => (loggedIn ? (<Search />) : (<Redirect to="/login" />))}
+        />
+        <Route
+          path="/about"
+          render={() => (loggedIn ? (<About />) : (<Redirect to="/login" />))}
+        />
+        <Route
+          path="/logout"
+          render={() => (<Redirect to="/" />)}
+        />
         <Route component={NotFound} />
       </Switch>
     </Router>
   </div>
 );
+
+
+App.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+};
 
 /**
  * Export
