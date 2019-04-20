@@ -16,7 +16,7 @@ const Navigation = () => (
       <Menu.Item name="about" as={NavLink} to="/about">
         A Propos
       </Menu.Item>
-      <Menu.Item name="login" as={NavLink} to="/login">
+      <Menu.Item name="login" as={NavLink} exact to="/">
         Login
       </Menu.Item>
       <Menu.Item name="logout" as={NavLink} to="/logout">

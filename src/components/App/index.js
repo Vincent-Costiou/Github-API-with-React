@@ -2,7 +2,7 @@
  * Import
  */
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /**
  * Local import
@@ -13,6 +13,7 @@ import Login from '../Login';
 import About from '../About';
 import Welcome from '../Welcome';
 import Search from '../Search';
+import NotFound from '../NotFound';
 
 
 // Styles et assets
@@ -25,13 +26,15 @@ const App = () => (
   <div id="app">
     <Router>
       <Navigation />
-      <Route exact path="/welcome" component={Welcome} />
-      <Route path="/search" component={Search} />
-      <Route path="/about" component={About} />
-      <Route path="/login" component={Login} />
-      <Route path="/logout" component={Login} />
+      <Switch>
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/search" component={Search} />
+        <Route path="/about" component={About} />
+        <Route exact path="/" component={Login} />
+        <Route path="/logout" component={Login} />
+        <Route component={NotFound} />
+      </Switch>
     </Router>
-    
   </div>
 );
 
