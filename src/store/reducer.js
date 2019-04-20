@@ -1,11 +1,13 @@
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: false,
   token: '',
   loadingMessage: 'Saisissez votre token Github',
+  welcomeMessage: '',
   loading: false,
   user: {},
   repos: [],
+  searchedRepos: [],
 };
 
 // Types
@@ -14,6 +16,7 @@ export const LOG_USER = 'LOG_USER';
 export const LOGIN_INPUT_CHANGE = 'LOGIN_INPUT_CHANGE';
 const CHANGE_LOADING_MESSAGE = 'CHANGE_LOADING_MESSAGE';
 const USER_LOGGED = 'USER_LOGGED';
+const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
 
 
 // Reducer
@@ -44,6 +47,7 @@ const reducer = (state = initialState, action = {}) => {
         loading: false,
         loggedIn: true,
         loadingMessage: '',
+        welcomeMessage: action.welcomeMessage,
         user: { ...action.user },
         repos: { ...action.repos },
       };
@@ -79,10 +83,16 @@ export const changeLoadingMessage = text => ({
   text,
 });
 
-export const userLogged = (user, repos) => ({
+export const userLogged = (message, user, repos) => ({
   type: USER_LOGGED,
+  welcomeMessage: message,
   user,
   repos,
+});
+
+export const searchForRepos = searchedRepos => ({
+  type: SEARCH_FOR_REPOS,
+  searchedRepos,
 });
 
 export default reducer;

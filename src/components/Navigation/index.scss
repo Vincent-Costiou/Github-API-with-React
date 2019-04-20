@@ -9,3 +9,16 @@
     }
   }
 }
+
+#login {
+  width: 500px;
+  margin: 100px auto;
+  
+  label{
+    padding: 1em 0;
+  }
+
+  #loginMessage {
+    font-size: 2em;
+  }
+}

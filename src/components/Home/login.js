@@ -14,11 +14,11 @@ const Login = ({ inputText, loadingMessage, loading, onInputChange, onFormSubmit
   const handleSubmit = (evt) => {
     evt.preventDefault();
     onFormSubmit();
-  }
+  };
 
   return (
-    <div id="login">
-      <h1>Login with <Icon name="github" /></h1>
+    <main>
+      <h1 id="loginMessage">Login with <Icon name="github" /></h1>
       <Form onSubmit={handleSubmit}>
         <Form.Field>
           <label>{loadingMessage}</label>
@@ -32,7 +32,7 @@ const Login = ({ inputText, loadingMessage, loading, onInputChange, onFormSubmit
         </Form.Field>
         <Button loading={loading} disabled={loading} type="submit">Go</Button>
       </Form>
-    </div>
+    </main>
   );
 };
 

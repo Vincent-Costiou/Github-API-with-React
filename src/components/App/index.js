@@ -10,9 +10,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
  */
 // Composants
 import Navigation from 'src/containers/Navigation';
-import Login from 'src/containers/Login';
+import Home from 'src/containers/Home';
 import About from '../About';
-import Welcome from '../Welcome';
 import Search from '../Search';
 import NotFound from '../NotFound';
 
@@ -27,20 +26,12 @@ import './app.scss';
 const App = ({ loggedIn }) => (
   <div id="app">
     <Router>
-      {loggedIn && <Navigation />}
+      <Navigation />
       <Switch>
         <Route
           exact
           path="/"
-          render={() => (loggedIn ? (<Redirect to="/welcome" />) : (<Redirect to="/login" />))}
-        />
-        <Route
-          path="/login"
-          render={() => (loggedIn ? (<Redirect to="/welcome" />) : (<Login />))}
-        />
-        <Route
-          path="/welcome"
-          render={() => (loggedIn ? (<Welcome />) : (<Redirect to="/login" />))}
+          component={Home}
         />
         <Route
           path="/search"

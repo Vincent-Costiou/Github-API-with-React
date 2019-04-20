@@ -26,9 +26,8 @@ const ajaxMiddleware = store => next => (action) => {
             .then((repoResponse) => {
               console.log('repos', repoResponse.data);
               const userRepos = repoResponse.data;
-              const messageRepos = `Bonjour ${user.login}, nous avons récupéré ${userRepos.lenght} repos depuis votre compte`;
-              store.dispatch(changeLoadingMessage(messageRepos));
-              store.dispatch(userLogged(user, userRepos));
+              const messageRepos = `Bonjour ${user.login}, nous avons récupéré ${userRepos.length} repos depuis votre compte`;
+              store.dispatch(userLogged(messageRepos, user, userRepos));
             })
             .catch(((error) => {}));
         })
