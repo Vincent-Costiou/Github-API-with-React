@@ -10,6 +10,7 @@ const initialState = {
   currentResearch: '',
   lastResearch: '',
   searching: false,
+  searchError: false,
   searchedRepos: [],
 };
 
@@ -22,6 +23,7 @@ const USER_LOGGED = 'USER_LOGGED';
 const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
 export const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
 const SEARCH_RETURNED_RESULTS = 'SEARCH_RETURNED_RESULTS';
+const SEARCH_ERROR = 'SEARCH_ERROR';
 
 // Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -77,6 +79,13 @@ const reducer = (state = initialState, action = {}) => {
         searching: false,
       };
 
+    case SEARCH_ERROR:
+      return {
+        ...state,
+        searchError: true,
+        searching: false,
+      };
+
     case ON_LOGOUT:
       return {
         ...state,
@@ -127,6 +136,10 @@ export const searchForRepos = () => ({
 export const searchReturnedResults = searchedRepos => ({
   type: SEARCH_RETURNED_RESULTS,
   searchedRepos,
+});
+
+export const searchError = () => ({
+  type: SEARCH_ERROR,
 });
 
 export default reducer;

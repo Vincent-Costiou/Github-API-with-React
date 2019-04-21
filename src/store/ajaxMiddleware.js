@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { LOG_USER, SEARCH_FOR_REPOS, changeLoadingMessage, userLogged, searchReturnedResults } from './reducer';
+import {
+  LOG_USER,
+  SEARCH_FOR_REPOS,
+  changeLoadingMessage,
+  userLogged,
+  searchReturnedResults,
+  searchError,
+} from './reducer';
 
 const ajaxMiddleware = store => next => (action) => {
 
@@ -48,7 +55,9 @@ const ajaxMiddleware = store => next => (action) => {
           }));
           store.dispatch(searchReturnedResults(formattedResults));
         })
-        .catch((error) => {});
+        .catch((error) => {
+          store.dispatch(searchError());
+        });
       break;
 
     default:

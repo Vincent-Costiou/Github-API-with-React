@@ -6,6 +6,7 @@ import { searchInputChange, searchForRepos } from 'src/store/reducer';
 const mapStateToProps = state => ({
   inputText: state.currentResearch,
   searching: state.searching,
+  error: state.searchError,
 });
 
 const mapDispatchToProps = dispatch => ({

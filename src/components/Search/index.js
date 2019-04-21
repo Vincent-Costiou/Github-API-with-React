@@ -1,10 +1,10 @@
 import React from 'react';
-import { Form, Input, Button, Icon, Dimmer, Loader } from 'semantic-ui-react';
+import { Form, Input, Button, Icon, Dimmer, Loader, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const Search = ({ inputText, searching, onSearchChange, onSearchSubmit }) => {
+const Search = ({ inputText, searching, error, onSearchChange, onSearchSubmit }) => {
   const handleChange = (evt) => {
     const { value } = evt.target;
     onSearchChange(value);
@@ -27,6 +27,13 @@ const Search = ({ inputText, searching, onSearchChange, onSearchSubmit }) => {
       <Form id="searchForm" onSubmit={handleSubmit}>
         <Form.Field>
           <label id="searchLabel">Que recherchez-vous ?</label>
+          {error
+            && (
+            <Message negative>
+              <Message.Header>Nous sommes désolés, votre requête n'a pas pu aboutir</Message.Header>
+            </Message>
+            )
+          }
           <Form.Group id="searchGroup">
             <Input
               placeholder="Search for repos"
@@ -45,6 +52,7 @@ const Search = ({ inputText, searching, onSearchChange, onSearchSubmit }) => {
 Search.propTypes = {
   inputText: PropTypes.string.isRequired,
   searching: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   onSearchSubmit: PropTypes.func.isRequired,
 };
