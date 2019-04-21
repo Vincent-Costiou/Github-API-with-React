@@ -1,6 +1,6 @@
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: false,
   token: '',
   loadingMessage: 'Saisissez votre token Github',
   welcomeMessage: '',
@@ -20,7 +20,7 @@ const LOGIN_INPUT_CHANGE = 'LOGIN_INPUT_CHANGE';
 const CHANGE_LOADING_MESSAGE = 'CHANGE_LOADING_MESSAGE';
 const USER_LOGGED = 'USER_LOGGED';
 const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
-const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
+export const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
 const SEARCH_RETURNED_RESULTS = 'SEARCH_RETURNED_RESULTS';
 
 // Reducer

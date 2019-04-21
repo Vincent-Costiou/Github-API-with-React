@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOG_USER, changeLoadingMessage, userLogged } from './reducer';
+import { LOG_USER, SEARCH_FOR_REPOS, changeLoadingMessage, userLogged, searchReturnedResults } from './reducer';
 
 const ajaxMiddleware = store => next => (action) => {
 
@@ -30,6 +30,17 @@ const ajaxMiddleware = store => next => (action) => {
               store.dispatch(userLogged(messageRepos, user, userRepos));
             })
             .catch(((error) => {}));
+        })
+        .catch((error) => {});
+      break;
+
+    case SEARCH_FOR_REPOS:
+      next(action);
+
+      fetchGithubApi('https://api.github.com/user/repos?q=react')
+        .then((response) => {
+          console.log('research results', response.data);
+          store.dispatch(searchReturnedResults(response.data));
         })
         .catch((error) => {});
       break;

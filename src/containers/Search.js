@@ -4,7 +4,7 @@ import { searchInputChange, searchForRepos } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
-  inputText: state.research,
+  inputText: state.currentResearch,
   searching: state.searching,
 });
 

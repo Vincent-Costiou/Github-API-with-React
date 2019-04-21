@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const Search = ({ research, searching, onSearchChange, onSearchSubmit }) => {
+const Search = ({ inputText, searching, onSearchChange, onSearchSubmit }) => {
   const handleChange = (evt) => {
     const { value } = evt.target;
     onSearchChange(value);
@@ -30,7 +30,7 @@ const Search = ({ research, searching, onSearchChange, onSearchSubmit }) => {
           <Form.Group id="searchGroup">
             <Input
               placeholder="Search for repos"
-              value={research}
+              value={inputText}
               onChange={handleChange}
             />
             <Button id="searchButton" type="submit"><Icon name="arrow right" /></Button>
@@ -43,7 +43,7 @@ const Search = ({ research, searching, onSearchChange, onSearchSubmit }) => {
 };
 
 Search.propTypes = {
-  research: PropTypes.string.isRequired,
+  inputText: PropTypes.string.isRequired,
   searching: PropTypes.bool.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   onSearchSubmit: PropTypes.func.isRequired,
