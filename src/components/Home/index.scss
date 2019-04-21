@@ -9,6 +9,16 @@
     font-style: italic;
     font-weight: lighter;
   }
+
+  #results{
+    display: flex;
+    
+    .tabResult{
+      width: 40%;
+      padding:2em;
+      margin: 1em;
+    }
+  }
 }
 
 #login {

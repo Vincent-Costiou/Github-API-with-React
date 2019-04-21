@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Navigation from 'src/containers/Navigation';
 import Home from 'src/containers/Home';
 import Search from 'src/containers/Search';
+import RepoDetail from '../RepoDetail';
 import About from '../About';
 import NotFound from '../NotFound';
 
@@ -44,6 +45,10 @@ const App = ({ loggedIn }) => (
         <Route
           path="/logout"
           render={() => (<Redirect to="/" />)}
+        />
+        <Route
+          path="/repo"
+          render={() => (loggedIn ? (<RepoDetail />) : (<Redirect to="/" />))}
         />
         <Route component={NotFound} />
       </Switch>
