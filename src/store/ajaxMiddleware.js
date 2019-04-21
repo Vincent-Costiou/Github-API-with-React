@@ -27,13 +27,30 @@ const ajaxMiddleware = store => next => (action) => {
       fetchGithubApi('https://api.github.com/user')
         .then((response) => {
           console.log('user', response.data);
+
           const user = response.data;
           const message = `Récupération des repos pour ${user.login}`;
+
           store.dispatch(changeLoadingMessage(message));
+
           fetchGithubApi('https://api.github.com/user/repos')
             .then((repoResponse) => {
               console.log('repos', repoResponse.data);
-              const userRepos = repoResponse.data;
+              const userRepos = repoResponse.data.map((repo) => {
+                const year = repo.updated_at.substring(0, 4);
+                const month = repo.updated_at.substring(7, 5);
+                const day = repo.updated_at.substring(10, 8);
+
+                const formattedDate = `${day}/${month}/${year}`;
+
+                return {
+                  id: repo.id,
+                  header: repo.name,
+                  url: `${repo.url}/contents`,
+                  updatedAt: formattedDate,
+                  favorite: false,
+                };
+              });
               const messageRepos = `Bonjour ${user.login}, nous avons récupéré ${userRepos.length} repos depuis votre compte`;
               store.dispatch(userLogged(messageRepos, user, userRepos));
             })
