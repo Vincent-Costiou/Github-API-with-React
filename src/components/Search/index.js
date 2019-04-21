@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Icon } from 'semantic-ui-react';
+import { Form, Input, Button, Icon, Dimmer, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import './index.scss';
@@ -17,6 +17,13 @@ const Search = ({ research, searching, onSearchChange, onSearchSubmit }) => {
 
   return (
     <main id="search">
+      {searching
+        && (
+          <Dimmer active inverted>
+            <Loader size="massive">Loading</Loader>
+          </Dimmer>
+        )
+      }
       <Form id="searchForm" onSubmit={handleSubmit}>
         <Form.Field>
           <label id="searchLabel">Que recherchez-vous ?</label>
@@ -30,6 +37,7 @@ const Search = ({ research, searching, onSearchChange, onSearchSubmit }) => {
           </Form.Group>
         </Form.Field>
       </Form>
+
     </main>
   );
 };
