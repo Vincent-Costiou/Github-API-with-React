@@ -37,10 +37,16 @@ const ajaxMiddleware = store => next => (action) => {
     case SEARCH_FOR_REPOS:
       next(action);
 
-      fetchGithubApi('https://api.github.com/user/repos?q=react')
-        .then((response) => {
-          console.log('research results', response.data);
-          store.dispatch(searchReturnedResults(response.data));
+      axios.get(`https://api.github.com/search/repositories?q=${store.getState().currentResearch}`)
+        .then((results) => {
+          const formattedResults = results.data.items.map(repo => ({
+            id: repo.id,
+            header: repo.name,
+            url: `${repo.url}/contents`,
+            updatedAt: repo.updated_at,
+            favorite: false,
+          }));
+          store.dispatch(searchReturnedResults(formattedResults));
         })
         .catch((error) => {});
       break;

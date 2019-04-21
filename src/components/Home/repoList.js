@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Link } from 'semantic-ui-react';
+import { List } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 
 import './index.scss';
 
