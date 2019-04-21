@@ -4,6 +4,7 @@ import {
   SEARCH_FOR_REPOS,
   changeLoadingMessage,
   userLogged,
+  loginError,
   searchReturnedResults,
   searchError,
 } from './reducer';
@@ -38,7 +39,9 @@ const ajaxMiddleware = store => next => (action) => {
             })
             .catch(((error) => {}));
         })
-        .catch((error) => {});
+        .catch((error) => {
+          store.dispatch(loginError());
+        });
       break;
 
     case SEARCH_FOR_REPOS:

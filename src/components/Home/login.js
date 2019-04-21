@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Input, Icon } from 'semantic-ui-react';
+import { Form, Button, Input, Icon, Message } from 'semantic-ui-react';
 
 import './index.scss';
 
-const Login = ({ inputText, loadingMessage, loading, onInputChange, onFormSubmit }) => {
+const Login = ({ inputText, loadingMessage, loading, error, onInputChange, onFormSubmit }) => {
 
   const handleChange = (evt) => {
     const { value } = evt.target;
@@ -21,6 +21,16 @@ const Login = ({ inputText, loadingMessage, loading, onInputChange, onFormSubmit
       <h1 id="loginMessage">Login with <Icon name="github" /></h1>
       <Form onSubmit={handleSubmit}>
         <Form.Field>
+          {error
+              && (
+              <div id="errorMessage">
+                <Message negative>
+                  <Message.Header>Un problème est survenu.</Message.Header>
+                  <p>Vérifiez que votre token est correct.</p>
+                </Message>
+              </div>
+              )
+            }
           <label id="loginLabel">{loadingMessage}</label>
           <Input
             type="password"
@@ -40,6 +50,7 @@ Login.propTypes = {
   inputText: PropTypes.string.isRequired,
   loadingMessage: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
 }

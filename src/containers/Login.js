@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   inputText: state.token,
   loadingMessage: state.loadingMessage,
   loading: state.loading,
+  error: state.loginError,
 });
 
 const mapDispatchToProps = dispatch => ({

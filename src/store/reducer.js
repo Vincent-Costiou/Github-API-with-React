@@ -1,6 +1,7 @@
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: false,
+  loginError: false,
   token: '',
   loadingMessage: 'Saisissez votre token Github',
   welcomeMessage: '',
@@ -20,10 +21,12 @@ export const LOG_USER = 'LOG_USER';
 const LOGIN_INPUT_CHANGE = 'LOGIN_INPUT_CHANGE';
 const CHANGE_LOADING_MESSAGE = 'CHANGE_LOADING_MESSAGE';
 const USER_LOGGED = 'USER_LOGGED';
+const LOGIN_ERROR = 'LOGIN_ERROR';
 const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
 export const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
 const SEARCH_RETURNED_RESULTS = 'SEARCH_RETURNED_RESULTS';
 const SEARCH_ERROR = 'SEARCH_ERROR';
+
 
 // Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -56,6 +59,13 @@ const reducer = (state = initialState, action = {}) => {
         welcomeMessage: action.welcomeMessage,
         user: { ...action.user },
         repos: { ...action.repos },
+      };
+
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        loginError: true,
+        loading: false,
       };
 
     case SEARCH_INPUT_CHANGE:
@@ -122,6 +132,10 @@ export const userLogged = (message, user, repos) => ({
   welcomeMessage: message,
   user,
   repos,
+});
+
+export const loginError = () => ({
+  type: LOGIN_ERROR,
 });
 
 export const searchInputChange = research => ({
