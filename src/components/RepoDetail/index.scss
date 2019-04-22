@@ -1,5 +1,11 @@
-.resultTab{
-  margin:0;
-
-  width: 40%;
+#repoHeader{
+  display: flex;
+  font-size: 2em;
+  #favorite{
+    padding: 0 0.5em;
+    cursor: pointer;
+  }
+  #githubLink{
+    cursor: pointer;
+  }
 }

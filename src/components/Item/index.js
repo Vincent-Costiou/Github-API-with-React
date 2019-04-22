@@ -4,10 +4,10 @@ import { List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Item = ({ repo, onRepoClick }) => (
-  <List.Item key={repo.id} as={Link} to="/repo" onClick={onRepoClick(repo)}>
+  <List.Item key={repo.id}>
     <List.Icon name="github" size="large" verticalAlign="middle" />
     <List.Content>
-      <List.Header>{repo.header}</List.Header>
+      <List.Header as={Link} to="/repo" onClick={onRepoClick(repo)}>{repo.header}</List.Header>
       <List.Description>Date du dernier update : {repo.updatedAt}</List.Description>
     </List.Content>
   </List.Item>

@@ -17,7 +17,7 @@ const ResultList = ({ searchedRepos, lastResearch, searchResultMessage }) => (
         && (
 
           Object.keys(searchedRepos).map(key => (
-            <Item repo={searchedRepos[key]} />
+            <Item repo={searchedRepos[key]} key={searchedRepos[key].id} />
           ))
         )
       }

@@ -7,7 +7,7 @@ import Item from 'src/containers/Item';
 
 import './index.scss';
 
-const RepoList = ({ title, repos, onRepoClick }) => (
+const RepoList = ({ title, repos }) => (
   <div className="tabResult">
     <h2 id="title">{title}</h2>
     <List divided relaxed>
@@ -17,7 +17,7 @@ const RepoList = ({ title, repos, onRepoClick }) => (
         && (
 
           Object.keys(repos).map(key => (
-            <Item repo={repos[key]} />
+            <Item repo={repos[key]} key={repos[key].id} />
           ))
         )
       }
@@ -27,7 +27,6 @@ const RepoList = ({ title, repos, onRepoClick }) => (
 
 RepoList.propTypes = {
   title: PropTypes.string.isRequired,
-  onRepoClick: PropTypes.func.isRequired,
   repos: PropTypes.object,
 };
 

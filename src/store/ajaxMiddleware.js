@@ -2,11 +2,13 @@ import axios from 'axios';
 import {
   LOG_USER,
   SEARCH_FOR_REPOS,
+  OPEN_REPO_DETAILS,
   changeLoadingMessage,
   userLogged,
   loginError,
   searchReturnedResults,
   searchError,
+  fetchedRepoDetails,
 } from './reducer';
 
 const ajaxMiddleware = store => next => (action) => {
@@ -48,6 +50,7 @@ const ajaxMiddleware = store => next => (action) => {
                   header: repo.name,
                   url: `${repo.url}/contents`,
                   updatedAt: formattedDate,
+                  redirect: repo.html_url,
                 };
               });
               const messageRepos = `Bonjour ${user.login}`;
@@ -77,9 +80,25 @@ const ajaxMiddleware = store => next => (action) => {
               header: repo.name,
               url: `${repo.url}/contents`,
               updatedAt: formattedDate,
+              redirect: repo.html_url,
             };
           });
           store.dispatch(searchReturnedResults(formattedResults));
+        })
+        .catch((error) => {
+          store.dispatch(searchError());
+        });
+      break;
+
+    case OPEN_REPO_DETAILS:
+      next(action);
+      axios.get(store.getState().openedRepo.url)
+        .then((results) => {
+          console.log(results.data);
+          const files = results.data.filter(elem => elem.type === 'file');
+          const folders = results.data.filter(elem => elem.type === 'dir');
+          const listFiles = [...folders, ...files];
+          store.dispatch(fetchedRepoDetails(listFiles));
         })
         .catch((error) => {
           store.dispatch(searchError());

@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onRepoClick: (repo) => {
+  onRepoClick: repo => () => {
     dispatch(openRepoDetails(repo));
   },
 });

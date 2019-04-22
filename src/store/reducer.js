@@ -14,8 +14,9 @@ const initialState = {
   searchError: false,
   searchResultMessage: '',
   searchedRepos: {},
-  favRepos: {},
+  favRepos: [],
   openedRepo: {},
+  repoDetails: [],
 };
 
 // Types
@@ -29,7 +30,9 @@ const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
 export const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
 const SEARCH_RETURNED_RESULTS = 'SEARCH_RETURNED_RESULTS';
 const SEARCH_ERROR = 'SEARCH_ERROR';
-const OPEN_REPO_DETAILS = 'OPEN_REPO_DETAILS';
+export const OPEN_REPO_DETAILS = 'OPEN_REPO_DETAILS';
+const FETCHED_REPO_DETAILS = 'FETCHED_REPO_DETAILS';
+const IS_FAVORITE = 'IS_FAVORITE';
 
 
 // Reducer
@@ -105,6 +108,20 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         openedRepo: action.openedRepo,
+        searching: true,
+      };
+
+    case FETCHED_REPO_DETAILS:
+      return {
+        ...state,
+        searching: false,
+        repoDetails: action.repoDetails,
+      };
+
+    case IS_FAVORITE:
+      return {
+        ...state,
+        favRepos: [...state.favRepos, action.repo],
       };
 
     case ON_LOGOUT:
@@ -171,5 +188,16 @@ export const openRepoDetails = openedRepo => ({
   type: OPEN_REPO_DETAILS,
   openedRepo,
 });
+
+export const fetchedRepoDetails = repoDetails => ({
+  type: FETCHED_REPO_DETAILS,
+  repoDetails,
+});
+
+export const isFavorite = repo => ({
+  type: IS_FAVORITE,
+  repo,
+});
+
 
 export default reducer;

@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Navigation from 'src/containers/Navigation';
 import Home from 'src/containers/Home';
 import Search from 'src/containers/Search';
-import RepoDetail from '../RepoDetail';
+import RepoDetail from 'src/containers/RepoDetail';
 import About from '../About';
 import NotFound from '../NotFound';
 
@@ -24,7 +24,7 @@ import './app.scss';
  * Code
  */
 
-const App = ({ loggedIn }) => (
+const App = ({ loggedIn, list }) => (
   <div id="app">
     <Router>
       <Navigation title="Hello" />
