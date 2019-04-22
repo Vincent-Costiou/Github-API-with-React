@@ -2,6 +2,8 @@ import React from 'react';
 import { Form, Input, Button, Icon, Dimmer, Loader, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
+import ResultSearch from 'src/containers/ResultList';
+
 import './index.scss';
 
 const Search = ({ inputText, searching, error, onSearchChange, onSearchSubmit }) => {
@@ -44,7 +46,7 @@ const Search = ({ inputText, searching, error, onSearchChange, onSearchSubmit })
           </Form.Group>
         </Form.Field>
       </Form>
-
+      <ResultSearch />
     </main>
   );
 };

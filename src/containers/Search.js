@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   inputText: state.currentResearch,
   searching: state.searching,
   error: state.searchError,
+  searchedRepos: state.searchedRepos,
 });
 
 const mapDispatchToProps = dispatch => ({

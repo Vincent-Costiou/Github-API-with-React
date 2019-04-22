@@ -15,7 +15,7 @@ const datas = [
 
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
   loginError: false,
   token: '',
   loadingMessage: 'Saisissez votre token Github',
@@ -27,7 +27,8 @@ const initialState = {
   lastResearch: '',
   searching: false,
   searchError: false,
-  searchedRepos: datas,
+  searchResultMessage: '',
+  searchedRepos: {},
   favRepos: {},
 };
 
@@ -100,9 +101,10 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         searchedRepos: action.searchedRepos,
-        lastResearch: state.research,
+        lastResearch: state.currentResearch,
         currentResearch: '',
         searching: false,
+        searchResultMessage: `Nous avons trouvé ${Object.keys(action.searchedRepos).length} résultats pour votre recherche : `,
       };
 
     case SEARCH_ERROR:
