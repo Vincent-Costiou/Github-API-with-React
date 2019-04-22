@@ -1,6 +1,6 @@
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
   loginError: false,
   token: '',
   loadingMessage: 'Saisissez votre token Github',

@@ -51,7 +51,7 @@ const ajaxMiddleware = store => next => (action) => {
                   favorite: false,
                 };
               });
-              const messageRepos = `Bonjour ${user.login}, nous avons récupéré ${userRepos.length} repos depuis votre compte`;
+              const messageRepos = `Bonjour ${user.login}`;
               store.dispatch(userLogged(messageRepos, user, userRepos));
             })
             .catch(((error) => {}));

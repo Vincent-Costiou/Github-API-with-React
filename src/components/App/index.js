@@ -27,7 +27,7 @@ import './app.scss';
 const App = ({ loggedIn }) => (
   <div id="app">
     <Router>
-      <Navigation />
+      <Navigation title="Hello" />
       <Switch>
         <Route
           exact

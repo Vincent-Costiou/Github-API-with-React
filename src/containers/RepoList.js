@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import RepoList from 'src/components/Home/repoList';
 
-const mapStateToProps = ownProps => ({
+const mapStateToProps = (state, ownProps) => ({
   title: ownProps.title,
 });
 

@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table, Icon } from 'semantic-ui-react';
 
-const RepoDetail = ({ list }) => {
+const RepoDetail = () => {
 
   return (
     <div>
-      <Table celled striped>
+      <p>Repo Detail</p>
+      {/* <Table celled striped>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Git Repository</Table.HeaderCell>
@@ -26,7 +27,7 @@ const RepoDetail = ({ list }) => {
             ))
           }
         </Table.Body>
-      </Table>
+      </Table> */}
     </div>
   );
 };
