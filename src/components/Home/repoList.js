@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import Item from 'src/containers/Item';
 
 import './index.scss';
 
-const RepoList = ({ title, repos }) => (
+const RepoList = ({ title, repos, onRepoClick }) => (
   <div className="tabResult">
     <h2 id="title">{title}</h2>
     <List divided relaxed>
@@ -16,13 +17,7 @@ const RepoList = ({ title, repos }) => (
         && (
 
           Object.keys(repos).map(key => (
-            <List.Item key={repos[key].id}>
-              <List.Icon name="github" size="large" verticalAlign="middle" />
-              <List.Content>
-                <List.Header as={Link} to="/repo">{repos[key].header}</List.Header>
-                <List.Description>Date du dernier update : {repos[key].updatedAt}</List.Description>
-              </List.Content>
-            </List.Item>
+            <Item repo={repos[key]} />
           ))
         )
       }
@@ -32,23 +27,13 @@ const RepoList = ({ title, repos }) => (
 
 RepoList.propTypes = {
   title: PropTypes.string.isRequired,
-  repos: PropTypes.objectOf(
-    PropTypes.objectOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        header: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        updateAt: PropTypes.string.isRequired,
-      }),
-    ),
-  ),
+  onRepoClick: PropTypes.func.isRequired,
+  repos: PropTypes.object,
 };
 
 RepoList.defaultProps = {
   repos: {},
 };
-
-
 
 
 export default RepoList;

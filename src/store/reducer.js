@@ -1,18 +1,3 @@
-const datas = [
-  {
-    id: 1,
-    header: 'repos 1',
-    url: 'zegdoqbjmls',
-    updatedAt: '22/04/2019',
-  },
-  {
-    id: 2,
-    header: 'repos 2',
-    url: 'zegdoqbjmls',
-    updatedAt: '22/04/2019',
-  },
-];
-
 
 const initialState = {
   loggedIn: true,
@@ -30,6 +15,7 @@ const initialState = {
   searchResultMessage: '',
   searchedRepos: {},
   favRepos: {},
+  openedRepo: {},
 };
 
 // Types
@@ -43,6 +29,7 @@ const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
 export const SEARCH_FOR_REPOS = 'SEARCH_FOR_REPOS';
 const SEARCH_RETURNED_RESULTS = 'SEARCH_RETURNED_RESULTS';
 const SEARCH_ERROR = 'SEARCH_ERROR';
+const OPEN_REPO_DETAILS = 'OPEN_REPO_DETAILS';
 
 
 // Reducer
@@ -114,6 +101,12 @@ const reducer = (state = initialState, action = {}) => {
         searching: false,
       };
 
+    case OPEN_REPO_DETAILS:
+      return {
+        ...state,
+        openedRepo: action.openedRepo,
+      };
+
     case ON_LOGOUT:
       return {
         ...state,
@@ -172,6 +165,11 @@ export const searchReturnedResults = searchedRepos => ({
 
 export const searchError = () => ({
   type: SEARCH_ERROR,
+});
+
+export const openRepoDetails = openedRepo => ({
+  type: OPEN_REPO_DETAILS,
+  openedRepo,
 });
 
 export default reducer;
