@@ -1,12 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Menu, Segment } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 import './index.scss';
 
-const Navigation = ({ onLogout, loggedIn, title }) => (
+const Navigation = ({ onLogout, loggedIn }) => (
   <Segment inverted id="header">
-    <h1>{title}</h1>
     <Menu inverted secondary id="nav">
       <Menu.Item name="welcome" as={NavLink} to="/">
         Welcome
@@ -31,5 +31,10 @@ const Navigation = ({ onLogout, loggedIn, title }) => (
     </Menu>
   </Segment>
 );
+
+Navigation.propTypes = {
+  onLogout: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+};
 
 export default Navigation;

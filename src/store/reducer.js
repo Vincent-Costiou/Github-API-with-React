@@ -1,18 +1,34 @@
+const datas = [
+  {
+    id: 1,
+    header: 'repos 1',
+    url: 'zegdoqbjmls',
+    updatedAt: '22/04/2019',
+  },
+  {
+    id: 2,
+    header: 'repos 2',
+    url: 'zegdoqbjmls',
+    updatedAt: '22/04/2019',
+  },
+];
+
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: false,
   loginError: false,
   token: '',
   loadingMessage: 'Saisissez votre token Github',
   welcomeMessage: '',
   loading: false,
   user: {},
-  repos: [],
+  repos: {},
   currentResearch: '',
   lastResearch: '',
   searching: false,
   searchError: false,
-  searchedRepos: [],
+  searchedRepos: datas,
+  favRepos: {},
 };
 
 // Types

@@ -48,7 +48,6 @@ const ajaxMiddleware = store => next => (action) => {
                   header: repo.name,
                   url: `${repo.url}/contents`,
                   updatedAt: formattedDate,
-                  favorite: false,
                 };
               });
               const messageRepos = `Bonjour ${user.login}`;
@@ -66,13 +65,20 @@ const ajaxMiddleware = store => next => (action) => {
 
       axios.get(`https://api.github.com/search/repositories?q=${store.getState().currentResearch}`)
         .then((results) => {
-          const formattedResults = results.data.items.map(repo => ({
-            id: repo.id,
-            header: repo.name,
-            url: `${repo.url}/contents`,
-            updatedAt: repo.updated_at,
-            favorite: false,
-          }));
+          const formattedResults = results.data.items.map((repo) => {
+            const year = repo.updated_at.substring(0, 4);
+            const month = repo.updated_at.substring(7, 5);
+            const day = repo.updated_at.substring(10, 8);
+
+            const formattedDate = `${day}/${month}/${year}`;
+
+            return {
+              id: repo.id,
+              header: repo.name,
+              url: `${repo.url}/contents`,
+              updatedAt: formattedDate,
+            };
+          });
           store.dispatch(searchReturnedResults(formattedResults));
         })
         .catch((error) => {

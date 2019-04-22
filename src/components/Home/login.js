@@ -53,6 +53,6 @@ Login.propTypes = {
   error: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
-}
+};
 
 export default Login;
