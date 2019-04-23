@@ -33,6 +33,7 @@ const RepoDetail = ({searching, error, list, repo, isFavorite}) => {
                 <Table.HeaderCell>
                   <div id="repoHeader">
                     {`Détail du repo ${repo.header}`}
+                    {/* TODO: check si le repo courant est dans favRepos pour changer l'étoile de start outline à star*/}
                     <div id="favorite" onClick={isFavorite(repo)}><Icon name="star outline" color="yellow" /></div>
                     <div id="githubLink">
                       <a href={repo.redirect}><Icon name="github" /></a>
