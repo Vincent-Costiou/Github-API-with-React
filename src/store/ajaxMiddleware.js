@@ -102,7 +102,17 @@ const ajaxMiddleware = store => next => (action) => {
           store.dispatch(fetchedRepoDetails(listFiles));
         })
         .catch((error) => {
-          store.dispatch(searchError());
+          fetchGithubApi(store.getState().openedRepo.url)
+            .then((results) => {
+              console.log(results.data);
+              const files = results.data.filter(elem => elem.type === 'file');
+              const folders = results.data.filter(elem => elem.type === 'dir');
+              const listFiles = [...folders, ...files];
+              store.dispatch(fetchedRepoDetails(listFiles));
+            })
+            .catch((error) => {
+              store.dispatch(searchError());
+            });
         });
       break;
 
