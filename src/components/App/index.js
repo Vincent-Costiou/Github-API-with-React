@@ -48,7 +48,7 @@ const App = ({ loggedIn, list }) => (
         />
         <Route
           path="/repo"
-          render={() => (loggedIn ? (<RepoDetail />) : (<Redirect to="/" />))}
+          render={() => (Object.keys(list).length > 0 ? (<RepoDetail />) : (<Redirect to="/search" />))}
         />
         <Route component={NotFound} />
       </Switch>

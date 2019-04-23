@@ -5,7 +5,16 @@ import { Redirect } from 'react-router-dom';
 
 import './index.scss';
 
-const RepoDetail = ({searching, error, list, repo, isFavorite}) => {
+const RepoDetail = ({searching, error, list, repo, isFavorite, favRepos}) => {
+  // const testFavoriteRepo = favRepos.find(elem => elem.id === favRepos);
+  console.log('favRepos', favRepos);
+  console.log('repo', repo);
+  console.log('repo.length', repo.length);
+  console.log('list', list.length);
+
+  const testFav = Object.keys(favRepos).find(key => (
+    favRepos[key].id === repo.id
+  ));
 
   return (
     <div>
@@ -33,8 +42,7 @@ const RepoDetail = ({searching, error, list, repo, isFavorite}) => {
                 <Table.HeaderCell>
                   <div id="repoHeader">
                     {`Détail du repo ${repo.header}`}
-                    {/* TODO: check si le repo courant est dans favRepos pour changer l'étoile de start outline à star*/}
-                    <div id="favorite" onClick={isFavorite(repo)}><Icon name="star outline" color="yellow" /></div>
+                    <div id="favorite" onClick={isFavorite(repo)}><Icon name={testFav ? 'star' : 'star outline'} color="yellow" /></div>
                     <div id="githubLink">
                       <a href={repo.redirect}><Icon name="github" /></a>
                     </div>

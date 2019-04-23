@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   error: state.searchError,
   list: state.repoDetails,
   repo: state.openedRepo,
+  favRepos: state.favRepos,
 });
 
 const mapDispatchToProps = dispatch => ({

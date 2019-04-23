@@ -3,7 +3,7 @@ import App from 'src/components/App';
 
 const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
-  list: state.repoDetails,
+  list: state.openedRepo,
 });
 
 const mapDispatchToProps = {};

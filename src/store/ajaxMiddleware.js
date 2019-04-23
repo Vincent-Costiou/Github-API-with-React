@@ -91,7 +91,6 @@ const ajaxMiddleware = store => next => (action) => {
       break;
 
     case OPEN_REPO_DETAILS:
-    // TODO: pb pour ramener le détail des repos de la page Welcome
       next(action);
       axios.get(store.getState().openedRepo.url)
         .then((results) => {
